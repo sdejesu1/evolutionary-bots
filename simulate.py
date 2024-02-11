@@ -15,6 +15,7 @@ for i in range(1, 1001):
 	p.stepSimulation()
 
 	backLegTouch = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
+	print(backLegTouch)
 
 	print(i)
 	t.sleep(1/70)
