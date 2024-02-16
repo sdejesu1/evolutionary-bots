@@ -23,9 +23,9 @@ def Create_Robot():
 	pyrosim.Send_Cube(name="FrontLeg", pos=[0,0.5,0] , size=[length, width, height])
 	pyrosim.Send_Cube(name="BackLeg", pos=[0, -0.5, 0], size=[length, width, height])
 
-	pyrosim.Send_Joint(name="Torso_BackLeg" , parent= "Torso" , child = "BackLeg" , type = "fixed", position = [0,-0.5,0.5])
+	pyrosim.Send_Joint(name="Torso_BackLeg", parent="Torso", child="BackLeg", type="fixed", position=[0,-0.5,0.5])
 
-	pyrosim.Send_Joint(name="Torso_FrontLeg" , parent= "Torso" , child = "FrontLeg" , type = "fixed", position = [0,0.5,0.5])
+	pyrosim.Send_Joint(name="Torso_FrontLeg", parent="Torso", child="FrontLeg", type="fixed", position=[0,0.5,0.5])
 
 	pyrosim.End()
 
