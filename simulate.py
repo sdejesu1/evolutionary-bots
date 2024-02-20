@@ -8,9 +8,9 @@ import pyrosim.pyrosim as pyrosim
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
-back_amplitude = numpy.pi/4
+back_amplitude = numpy.pi/8
 back_frequency = 10
-back_phaseOffset = 0
+back_phaseOffset = numpy.pi
 
 front_amplitude = numpy.pi/4
 front_frequency = 10
@@ -62,7 +62,7 @@ for i in range(0, 1000):
 	print(backLegSensorValues[i])
 	print(frontLegSensorValues[i])
 	print(i)
-	t.sleep(1/70)
+	t.sleep(1/1000)
 
 numpy.save("data/backleg_sensor_vals.npy", backLegSensorValues)
 numpy.save("data/frontleg_sensor_vals.npy", frontLegSensorValues)
