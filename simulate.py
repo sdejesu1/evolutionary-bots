@@ -15,6 +15,15 @@ p.loadSDF("world.sdf")
 pyrosim.Prepare_To_Simulate(robotId)
 backLegSensorValues = numpy.zeros(1000)
 frontLegSensorValues = numpy.zeros(1000)
+
+targetAngles = numpy.linspace(0, (2*numpy.pi), 1000)
+targetAngles = numpy.sin(targetAngles)
+targetAngles *= (numpy.pi/4)
+
+numpy.save("data/targetAngles.npy", targetAngles)
+
+
+print(targetAngles)
 print(backLegSensorValues)
 for i in range(0, 1000):
 	p.stepSimulation()
@@ -24,15 +33,15 @@ for i in range(0, 1000):
 		bodyIndex=robotId,
 		jointName=b'Torso_BackLeg',
 		controlMode=p.POSITION_CONTROL,
-		targetPosition=random.uniform((-numpy.pi/2), (numpy.pi/2)),
-		maxForce=150
+		targetPosition=targetAngles[i],
+		maxForce=200
 	)
 	pyrosim.Set_Motor_For_Joint(
 		bodyIndex=robotId,
 		jointName=b'Torso_FrontLeg',
 		controlMode=p.POSITION_CONTROL,
-		targetPosition=random.uniform((-numpy.pi/2), (numpy.pi/2)),
-		maxForce=150
+		targetPosition=targetAngles[i],
+		maxForce=200
 	)
 
 	print(backLegSensorValues[i])
