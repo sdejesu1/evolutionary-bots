@@ -8,6 +8,11 @@ import pyrosim.pyrosim as pyrosim
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
+amplitude = numpy.pi/4
+frequency = 1
+phaseOffset = 0
+
+# initializing variables
 p.setGravity(0,0,-9.8)
 planeId = p.loadURDF("plane.urdf")
 robotId = p.loadURDF("body.urdf")
@@ -15,12 +20,16 @@ p.loadSDF("world.sdf")
 pyrosim.Prepare_To_Simulate(robotId)
 backLegSensorValues = numpy.zeros(1000)
 frontLegSensorValues = numpy.zeros(1000)
-
+# init target angles to range [-pi/4, pi/4]
 targetAngles = numpy.linspace(0, (2*numpy.pi), 1000)
-targetAngles = numpy.sin(targetAngles)
-targetAngles *= (numpy.pi/4)
+#targetAngles = numpy.sin(targetAngles)
+
+# modifying construction of targetAngles
+for i in range(0, 1000):
+	targetAngles[i] = amplitude * numpy.sin(frequency * targetAngles[i] + phaseOffset)
 
 numpy.save("data/targetAngles.npy", targetAngles)
+exit()
 
 
 print(targetAngles)
