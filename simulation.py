@@ -1,3 +1,6 @@
+from world import WORLD
+from robot import ROBOT
 class SIMULATION:
     def __init__(self):
-        pass
+        self.world = WORLD()
+        self.robot = ROBOT()
