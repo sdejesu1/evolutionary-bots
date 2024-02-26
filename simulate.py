@@ -13,10 +13,8 @@ p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
 # initializing variables
 p.setGravity(0,0,-9.8)
-planeId = p.loadURDF("plane.urdf")
-robotId = p.loadURDF("body.urdf")
-p.loadSDF("world.sdf")
-pyrosim.Prepare_To_Simulate(robotId)
+
+#pyrosim.Prepare_To_Simulate(robotId)
 backLegSensorValues = numpy.zeros(c.NUM_SIMULATION_STEPS)
 frontLegSensorValues = numpy.zeros(c.NUM_SIMULATION_STEPS)
 # init target angles to range [-pi/4, pi/4]
@@ -61,6 +59,5 @@ for i in range(0, c.NUM_SIMULATION_STEPS):
 
 numpy.save("data/backleg_sensor_vals.npy", backLegSensorValues)
 numpy.save("data/frontleg_sensor_vals.npy", frontLegSensorValues)
-
-p.disconnect()"""
+"""
 simulation = SIMULATION()
