@@ -6,6 +6,7 @@ import pybullet_data
 import constants as c
 from world import WORLD
 from robot import ROBOT
+from motor import MOTOR
 
 
 class SIMULATION:
@@ -20,28 +21,10 @@ class SIMULATION:
         for i in range(0, c.NUM_SIMULATION_STEPS):
             p.stepSimulation()
             self.robot.sense(i)
-            """
-    
-            pyrosim.Set_Motor_For_Joint(
-                bodyIndex=robotId,
-                jointName=b'Torso_BackLeg',
-                controlMode=p.POSITION_CONTROL,
-                targetPosition=back_targetAngles[i],
-                maxForce=c.MAX_MOTOR_FORCE
-            )
-            pyrosim.Set_Motor_For_Joint(
-                bodyIndex=robotId,
-                jointName=b'Torso_FrontLeg',
-                controlMode=p.POSITION_CONTROL,
-                targetPosition=front_targetAngles[i],
-                maxForce=c.MAX_MOTOR_FORCE
-            )
-            """
-            print(i)
-            t.sleep(1 / 1000)
+            self.robot.Act(i)
 
-        '''numpy.save("data/backleg_sensor_vals.npy", backLegSensorValues)
-        numpy.save("data/frontleg_sensor_vals.npy", frontLegSensorValues)'''
+            print(i)
+            t.sleep(1 / 30)
 
     def __del__(self):
         p.disconnect()
