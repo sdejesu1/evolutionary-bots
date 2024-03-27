@@ -13,3 +13,6 @@ FRONT_PHASE_OFFSET = numpy.pi
 NUM_SIMULATION_STEPS = 1000
 SIMULATION_TIME_STEP = 1 / 1000
 MAX_MOTOR_FORCE = 100
+
+# number of generations for hill climber
+numberOfGenerations = 10
