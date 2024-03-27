@@ -11,6 +11,7 @@ from motor import MOTOR
 
 class SIMULATION:
     def __init__(self, directOrGUI):
+        self.directOrGUI = directOrGUI
         if directOrGUI == "DIRECT":
             self.physicsClient = p.connect(p.DIRECT)
         elif directOrGUI == "GUI":
@@ -28,7 +29,8 @@ class SIMULATION:
             self.robot.Act(i)
 
             #print(i)
-            #t.sleep(1 / 2000)
+            if self.directOrGUI == "GUI":
+                t.sleep(1 / 2000)
 
     def Get_Fitness(self):
         self.robot.Get_Fitness()
